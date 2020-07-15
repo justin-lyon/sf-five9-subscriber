@@ -41,7 +41,7 @@ Compose the FiveNineSocketAPI component into your component. Recommend that your
 
   <aura:handler name="socketMessage" event="c:E_Message" action="{!c.onMessage}" />
 
-  <c:FiveNineWebSocket />
+  <c:FiveNineSocketAPI />
 </aura:component>
 ```
 ```js
