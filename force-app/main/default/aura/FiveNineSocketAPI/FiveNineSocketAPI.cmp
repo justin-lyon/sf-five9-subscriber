@@ -1,0 +1,14 @@
+<aura:component description="FiveNineWebSocket" controller="FiveNineSocketAuraService">
+
+  <aura:attribute name="userId" type="Id" />
+  <aura:attribute name="config" type="Object" default="{}" />
+  <aura:attribute name="five9data" type="Object" />
+  <aura:attribute name="callAttributes" type="Object" />
+  <aura:attribute name="socket" type="Object" />
+  <aura:attribute name="skippedBeats" type="Integer" default="0" />
+  <aura:attribute name="timeout" type="Integer" />
+  <aura:attribute name="heartbeat" type="Integer" />
+
+  <aura:registerEvent name="socketMessage" type="c:E_Message" />
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+</aura:component>

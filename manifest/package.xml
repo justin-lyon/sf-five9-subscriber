@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>FiveNineSocketAuraService</members>
+        <members>FiveNineSocketAuraServiceTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>E_Message</members>
+        <members>FiveNineSocketAPI</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>https_app_five9_com</members>
+        <name>CorsWhitelistOrigin</name>
+    </types>
+    <types>
+        <members>AppFive9</members>
+        <members>httpsATLFive9</members>
+        <members>httpsSCLFive9</members>
+        <members>wssATLFive9</members>
+        <members>wssSCLFive9</members>
+        <name>CspTrustedSite</name>
+    </types>
+    <types>
+        <members>FiveNineResource.CallVariables</members>
+        <members>FiveNineResource.Metadata</members>
+        <members>FiveNineResource.WebSocket</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>FiveNineResource__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>FiveNineResource__mdt-Five9 Resource Layout</members>
+        <name>Layout</name>
+    </types>
+    <version>48.0</version>
+</Package>
