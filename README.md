@@ -1,6 +1,6 @@
 # sf-five-subscriber
 
-This Aura Component subscibes to Five9's WebSocket API and converts WebSocket Messages into Aura Component Events.
+This Aura Component subscribes to Five9's WebSocket API and converts WebSocket Messages into Aura Component Events.
 
 ## Supporting Configuration
 
