@@ -4,6 +4,8 @@ This Aura Component subscibes to Five9's WebSocket API and converts WebSocket Me
 
 ## Supporting Configuration
 
+The below Metadata Types are included in this project.
+
 | Metadata Type | Description |
 | --- | --- |
 | CorsWhitelistOrigin | Whitelist the Five9 Domain so we can make requests from aura directly to five9. |
