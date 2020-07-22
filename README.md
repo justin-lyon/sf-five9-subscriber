@@ -14,7 +14,9 @@ The below Metadata Types are included in this project.
 
 ## Event Types
 
-These are the primary events that the Aura Component monitors for. When a message corresponding to these Type Codes is emitted over the websocket, a summary of the message is emitted as a Component Event.
+These Event Type Codes come pre-configured in this repo. These are the primary events that the Aura Component monitors for. When a message corresponding to these Type Codes is emitted over the websocket, a summary of the message is emitted as a Component Event. Manage the Event Type Codes that you are subscribed to by managing FiveNineTypeCode__mdt Records.
+
+Regardless of the Type Codes in custom metadata, this socket will always observe the '1202' PONG type code.
 
 Type Codes are Strings unless otherwise specified.
 
