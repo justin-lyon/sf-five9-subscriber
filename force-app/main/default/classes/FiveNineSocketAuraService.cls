@@ -18,11 +18,18 @@ public with sharing class FiveNineSocketAuraService {
 				ResourceURL__c
 			FROM FiveNineResource__mdt];
 
+			vm.eventTypes = [
+				SELECT Id,
+					DeveloperName,
+					TypeCode__c
+				FROM FiveNineEventType__mdt];
+
 			return JSON.serialize(vm);
 	}
 
 	public class ViewModel {
 		public Boolean isFive9User {get;set;}
 		public List<FiveNineResource__mdt> resources {get;set;}
+		public List<FiveNineEventType__mdt> eventTypes {get;set;}
 	}
 }

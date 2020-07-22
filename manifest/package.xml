@@ -23,12 +23,16 @@
         <name>CspTrustedSite</name>
     </types>
     <types>
+        <members>FiveNineEventType.EVENT_CALL_CREATED</members>
+        <members>FiveNineEventType.EVENT_CALL_DELETED</members>
+        <members>FiveNineEventType.EVENT_CALL_UPDATED</members>
         <members>FiveNineResource.CallVariables</members>
         <members>FiveNineResource.Metadata</members>
         <members>FiveNineResource.WebSocket</members>
         <name>CustomMetadata</name>
     </types>
     <types>
+        <members>FiveNineEventType__mdt</members>
         <members>FiveNineResource__mdt</members>
         <name>CustomObject</name>
     </types>

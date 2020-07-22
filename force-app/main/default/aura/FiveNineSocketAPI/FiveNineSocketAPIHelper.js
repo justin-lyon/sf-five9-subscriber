@@ -4,9 +4,10 @@
     return helper.promisify(action)
       .then(res => {
         const data = res.getReturnValue()
-        const { isFive9User, resources } = JSON.parse(data)
+        const { isFive9User, resources, eventTypes } = JSON.parse(data)
 
-        const config = resources.reduce((acc, val) => {
+        const config = { eventTypes }
+        config.resources = resources.reduce((acc, val) => {
           acc[val.DeveloperName] = val
           return acc
         }, {})
@@ -18,12 +19,10 @@
   start: function (cmp, helper) {
     return helper.findConnection(cmp, helper)
       .then(data => {
-        console.log('f9 metadata', data)
         cmp.set('v.five9data', data)
         return helper.getCallVariables(cmp, helper)
       })
       .then(data => {
-        console.log('f9 callAttributes', data)
         cmp.set('v.callAttributes', data)
         return helper.connectSocket(cmp, helper)
       })
@@ -51,7 +50,6 @@
           }))
         }
 
-        console.log('connected', data)
         clearTimeout(cmp.get('v.timeout'))
         cmp.set('v.timeout', null)
         return data
@@ -62,7 +60,7 @@
     if (cmp.get('v.socket')) return
 
     const five9data = cmp.get('v.five9data')
-    const config = cmp.get('v.config').WebSocket
+    const config = cmp.get('v.config').resources.WebSocket
 
     if (!five9data) throw new Error('User is not yet connected to Five9.')
     if (!config) throw new Error('Missing required FiveNineResource__mdt.')
@@ -85,12 +83,11 @@
       socket.close()
     }, options)
 
-    console.log('socket connected', socket)
     cmp.set('v.socket', socket)
   },
 
   getMetadata: function (cmp, helper) {
-    const config = cmp.get('v.config').Metadata
+    const config = cmp.get('v.config').resources.Metadata
 
     if (!config) throw new Error('Missing required FiveNineResource__mdt.')
 
@@ -104,7 +101,7 @@
 
   getCallVariables: function (cmp, helper) {
     const five9data = cmp.get('v.five9data')
-    const config = cmp.get('v.config').CallVariables
+    const config = cmp.get('v.config').resources.CallVariables
 
     if (!five9data) throw new Error('User is not yet connected to Five9.')
     if (!config) throw new Error('Missing required FiveNineResource__mdt.')
@@ -138,15 +135,10 @@
 
   // Websocket Event, not standard aura event
   handleMessage: function (cmp, helper, event) {
+    const eventTypes = cmp.get('v.config').eventTypes
+    const typeCodes = eventTypes.map(t => t.TypeCode__c)
     const PONG = '1202'
-    const EVENT_CALL_CREATED = '3'
-    const EVENT_CALL_UPDATED = '4'
-    const EVENT_CALL_DELETED = '5'
-    const TYPE_CODES = [
-      PONG,
-      EVENT_CALL_CREATED,
-      EVENT_CALL_UPDATED,
-      EVENT_CALL_DELETED]
+    typeCodes.push(PONG)
 
     const data = JSON.parse(event.data)
 
@@ -156,7 +148,7 @@
       state: !!data.payLoad ? data.payLoad.state : null,
     }
 
-    if (TYPE_CODES.includes(summary.eventId)) {
+    if (typeCodes.includes(summary.eventId)) {
 
       const callData = helper.mapCallVariables(cmp, data.payLoad)
       summary.sessionId = callData && callData.call ? callData.call.session_id : null
