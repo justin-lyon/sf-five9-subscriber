@@ -4,7 +4,7 @@ This Aura Component subscribes to Five9's WebSocket API and converts WebSocket M
 
 ## Supporting Configuration
 
-The below Metadata Types are included in this project.
+The below Metadata Types are included in this project. CORs and CSP origin URLs should be confirmed with your Five9 Support Team. It is included in this project as an example. The Five9 APIs are provided by data centers that are determined at run-time.
 
 | Metadata Type | Description |
 | --- | --- |
